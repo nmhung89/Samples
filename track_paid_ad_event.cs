@@ -55,5 +55,5 @@ protected override void RequestBannerAds() {
      }
      Debug.Log($"trackPaidAdEvent  \n valuemicros {args.AdValue.Value} \n currency {args.AdValue.CurrencyCode} \n precision {args.AdValue.Precision} ");
      
-     Firebase.Analytics.FirebaseAnalytics.LogEvent("admob_ad_revenue", Dic);
+     Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_revenue_sdk", Dic);
  }
