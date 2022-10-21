@@ -1,3 +1,5 @@
+using Firebase.Analytics;
+
 protected override void RequestInterstitialAds()
 {
     if (mInterstitialData == null)
@@ -43,17 +45,14 @@ protected override void RequestBannerAds() {
 }
 
  public static void trackPaidAdEvent( AdValueEventArgs args, string adUnit, string adNetworkName) {
-     Dictionary<string, object> Dic = new Dictionary<string, object>();
-     Dic["valuemicros"] = args.AdValue.Value;
-     Dic["currency"] = args.AdValue.CurrencyCode;
-     Dic["precision"] = args.AdValue.Precision;
-     Dic["adunitid"] = adUnit;
+     Parameter[] LevelStartParameters = {
+        new Parameter(FirebaseAnalytics.ParameterValue, args.AdValue.Value / 1000000),
+        new Parameter(FirebaseAnalytics.ParameterCurrency, "USD"),
+        new Parameter("ad_format", adUnit),
+        // not required (these are for level analytics)
+        new Parameter(FirebaseAnalytics.ParameterLevel, currentLevel.ToString()),
+        new Parameter("level_mode", currentMode.ToString())
+    };
 
-     if (adNetworkName != null)
-     {
-         Dic["network"] = adNetworkName;
-     }
-     Debug.Log($"trackPaidAdEvent  \n valuemicros {args.AdValue.Value} \n currency {args.AdValue.CurrencyCode} \n precision {args.AdValue.Precision} ");
-     
-     Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_revenue_sdk", Dic);
+     FirebaseAnalytics.LogEvent("ad_revenue_sdk", Dic);
  }
