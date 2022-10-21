@@ -45,7 +45,7 @@ protected override void RequestBannerAds() {
 }
 
  public static void trackPaidAdEvent( AdValueEventArgs args, string adUnit, string adNetworkName) {
-     Parameter[] LevelStartParameters = {
+     Parameter[] AdRevenueParameters = {
         new Parameter(FirebaseAnalytics.ParameterValue, args.AdValue.Value / 1000000),
         new Parameter(FirebaseAnalytics.ParameterCurrency, "USD"),
         new Parameter("ad_format", adUnit),
@@ -54,5 +54,5 @@ protected override void RequestBannerAds() {
         new Parameter("level_mode", currentMode.ToString())
     };
 
-     FirebaseAnalytics.LogEvent("ad_revenue_sdk", Dic);
+     FirebaseAnalytics.LogEvent("ad_revenue_sdk", AdRevenueParameters);
  }
