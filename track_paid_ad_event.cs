@@ -46,7 +46,7 @@ protected override void RequestBannerAds() {
 
  public static void trackPaidAdEvent( AdValueEventArgs args, string adUnit, string adNetworkName) {
      Parameter[] AdRevenueParameters = {
-        new Parameter(FirebaseAnalytics.ParameterValue, args.AdValue.Value / 1000000),
+        new Parameter(FirebaseAnalytics.ParameterValue, Convert.ToDouble(args.AdValue.Value) / 1000000),
         new Parameter(FirebaseAnalytics.ParameterCurrency, "USD"),
         new Parameter("ad_format", adUnit),
         // not required (these are for level analytics)
