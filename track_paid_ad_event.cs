@@ -48,7 +48,7 @@ protected override void RequestBannerAds() {
      Parameter[] AdRevenueParameters = {
         new Parameter(FirebaseAnalytics.ParameterValue, Convert.ToDouble(args.AdValue.Value) / 1000000),
         new Parameter(FirebaseAnalytics.ParameterCurrency, "USD"),
-        new Parameter("ad_format", adFormat), // adFormat: banner, inter, reward, app_open, native, rewarded_inter, mrec, audio
+        new Parameter("ad_format", adFormat), // adFormat: banner, inter, reward, app_open, native, rewarded_inter, mrec, audio, collapsible
         new Parameter("ab_test_name", args.mediationABTestName),
         new Parameter("ab_test_variant", args.mediationABTestVariant),
         // not required (these are for level analytics)
